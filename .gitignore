@@ -1,0 +1,29 @@
+# .NET Core
+[Oo]bj/
+[Bb]in/
+
+# Configuration (Never commit local development secrets)
+appsettings.Development.json
+*.userSecrets
+
+# Logs & Local Databases
+*.log
+*.db
+*.sqlite3
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# IDE / Editors
+.vscode/
+.vs/
+.idea/
+
+# OS-specific
+.DS_Store
+.AppleDouble
+.LSOverride
