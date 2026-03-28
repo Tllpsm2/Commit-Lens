@@ -1,20 +1,25 @@
-# CommitLens
+# CommitLens (Main Project)
 
-CommitLens is a tool designed to help you visualize, analyze, and understand your Git commit history with ease.
+A C# command-line application designed to analyze and display the commit history of a Git repository.
 
-## Features
+## Estrutura
 
-- Simple and intuitive commit visualization
-- Easy to use and integrate into your existing workflow
+```
+CommitLens/
+├── Commands/          # CLI command implementations
+├── Config/            # Application configurations and settings
+├── Models/            # Data models (CommitEntry, DailyActivity, RepositoryInfo)
+├── Reporters/         # Report generation logic
+├── Services/          # Business logic and core services (GitLogService)
+└── Program.cs         # Application entry point
+```
 
-## Installation
+## How to Run
 
-Instructions on how to install the project will be added here.
+```bash
+dotnet run
+```
 
-## Usage
+## Dependencies
 
-Instructions on how to use the project will be added here.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- .NET 10.0
