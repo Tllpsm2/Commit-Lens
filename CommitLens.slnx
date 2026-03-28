@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CommitLens.Tests/CommitLens.Tests.csproj" />
+  <Project Path="CommitLens/CommitLens.csproj" />
+</Solution>

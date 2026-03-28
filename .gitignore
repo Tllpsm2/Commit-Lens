@@ -1,29 +1,78 @@
-# .NET Core
+# ============================================================
+# .NET Build Artifacts
+# ============================================================
 [Oo]bj/
 [Bb]in/
-
-# Configuration (Never commit local development secrets)
-appsettings.Development.json
-*.userSecrets
-
-# Logs & Local Databases
-*.log
-*.db
-*.sqlite3
-
-# User-specific files
-*.rsuser
-*.suo
 *.user
-*.userosscache
-*.sln.docstates
+*.suo
 
+# NuGet packages
+*.nupkg
+*.snupkg
+[Pp]ackages/
+!**/[Pp]ackages/build/
+*.nuspec
+
+# MSBuild / Restore
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Test Results & Coverage
+TestResults/
+coverage*/
+*.coverage
+*.coveragexml
+*.trx
+
+# ============================================================
 # IDE / Editors
-.vscode/
-.vs/
-.idea/
+# ============================================================
 
-# OS-specific
+# Visual Studio Code
+.vscode/
+
+# Visual Studio
+.vs/
+*.sln.docstates
+*.rsuser
+*.userosscache
+
+# JetBrains (Rider)
+.idea/
+*.sln.iml
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# ============================================================
+# OS-Specific
+# ============================================================
+
+# macOS
 .DS_Store
 .AppleDouble
 .LSOverride
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ============================================================
+# Secrets & Local Configuration
+# ============================================================
+appsettings.Development.json
+appsettings.Local.json
+*.userSecrets
+secrets.json
+
+# ============================================================
+# Logs & Databases
+# ============================================================
+*.log
+*.db
+*.sqlite
+*.sqlite3
