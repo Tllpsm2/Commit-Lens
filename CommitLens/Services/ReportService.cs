@@ -1,23 +1,26 @@
+using CommitLens.Interfaces;
 using CommitLens.Models;
 
 namespace CommitLens.Services;
 
-public static class ReportService
+public class ReportService : IReportService
 {
-    public static CommitReport Build(List<CommitEntry> commits)
+    public CommitReport Build(List<CommitEntry> commits)
     {
         ArgumentNullException.ThrowIfNull(commits);
 
-        var report = new CommitReport(
-            commits.Count,
-            commits
-                .GroupBy(c => c.Date.ToString("yyyy-MM-dd"))
-                .ToDictionary(g => g.Key, g => g.Count()),
-            commits
-                .GroupBy(c => c.AuthorEmail)
-                .ToDictionary(g => g.Key, g => g.Count())
-        );
+        var dailyActivity = commits
+            .GroupBy(c => c.Date.ToString("yyyy-MM-dd"))
+            .ToDictionary(g => g.Key, g => g.Count());
+        var authorActivity = commits
+            .GroupBy(c => c.AuthorEmail)
+            .ToDictionary(g => g.Key, g => g.Count());
         
-        return report;
+        return new CommitReport(
+            TotalCommits: commits.Count,
+            CommitsPerDay: dailyActivity,
+            CommitsPerAuthor: authorActivity
+        );
+
     }
 }
