@@ -1,4 +1,5 @@
 using CommitLens.Models;
+using CommitLens.Infrastructure;
 using CommitLens.Services;
 using Xunit;
 
@@ -6,6 +7,8 @@ namespace CommitLens.Tests;
 
 public class GitLogServiceTests
 {
+    private static readonly CommitParser Parser = new();
+
     // Representative log line used for basic validation
     private const string ValidLine = "abcdef1234567|Alice|alice@example.com|2024-06-15T09:30:00Z|Fix null ref";
 
@@ -20,7 +23,7 @@ public class GitLogServiceTests
         public void WhenNullOrWhitespace_ReturnsEmptyList(string? input)
         {
             // Act
-            var result = GitLogService.ParseOutput(input!);
+            var result = Parser.ParseOutput(input!);
 
             // Assert
             Assert.Empty(result);
@@ -35,7 +38,7 @@ public class GitLogServiceTests
         public void WhenFewerThanFiveParts_LineIsSkipped(string input)
         {
             // Act
-            var result = GitLogService.ParseOutput(input);
+            var result = Parser.ParseOutput(input);
 
             // Assert
             Assert.Empty(result);
@@ -48,7 +51,7 @@ public class GitLogServiceTests
             const string input = "abcdef1|Joao|j@e.com|NOT-A-DATE|mensagem";
 
             // Act
-            var result = GitLogService.ParseOutput(input);
+            var result = Parser.ParseOutput(input);
 
             // Assert
             Assert.Empty(result);
@@ -66,7 +69,7 @@ public class GitLogServiceTests
         public void WhenStructureIsValid_ReturnsSingleCommit(string input)
         {
             // Act
-            var result = GitLogService.ParseOutput(input);
+            var result = Parser.ParseOutput(input);
 
             // Assert
             Assert.Single(result);
@@ -79,7 +82,7 @@ public class GitLogServiceTests
             const string input = "abcdef1234567|Alice|alice@example.com|2024-06-15T09:30:00Z|Fix null ref";
 
             // Act
-            var result = GitLogService.ParseOutput(input);
+            var result = Parser.ParseOutput(input);
 
             // Assert
             CommitEntry commit = Assert.Single(result);
@@ -100,7 +103,7 @@ public class GitLogServiceTests
             const string input = "12345678|Joao|j@e.com|2024-01-01T12:00:00Z|msg | with | pipes";
 
             // Act
-            var result = GitLogService.ParseOutput(input);
+            var result = Parser.ParseOutput(input);
 
             // Assert
             CommitEntry commit = Assert.Single(result);
@@ -117,7 +120,7 @@ public class GitLogServiceTests
                 "ccc0003|Carol|c@c.com|2024-01-03T00:00:00Z|Commit C";
 
             // Act
-            var result = GitLogService.ParseOutput(input);
+            var result = Parser.ParseOutput(input);
 
             // Assert
             Assert.Equal(3, result.Count);
@@ -138,7 +141,7 @@ public class GitLogServiceTests
                 "ccc0003|Carol|c@c.com|2024-01-03T00:00:00Z|Another valid commit";
 
             // Act
-            var result = GitLogService.ParseOutput(input);
+            var result = Parser.ParseOutput(input);
 
             // Assert
             Assert.Equal(2, result.Count);
