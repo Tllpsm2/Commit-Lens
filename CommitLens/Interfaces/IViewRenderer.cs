@@ -4,6 +4,9 @@ namespace CommitLens.Interfaces;
 
 public interface IViewRenderer
 {
-    void ShowRecentCommits(List<Models.CommitEntry> commits, int days, int maxCommitsToShow);
-    void ShowCommitReport(Models.CommitReport report);
+    
+    void RenderNoGitRepoMessage(string repoPath);
+    void RenderNoCommitsMessage(int days);
+    void RenderCommitsTable(List<Models.CommitEntry> commits, int days, int maxCommitsToShow);
+    void RenderCommitStatistics(Models.CommitReport report);
 }
