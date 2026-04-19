@@ -10,6 +10,7 @@ services.AddTransient<IGitLogProvider, CliGitLogProvider>();
 services.AddTransient<IRepositoryLocator, FileSystemLocator>();
 services.AddTransient<IReportService, ReportService>();
 services.AddTransient<IViewRenderer, ConsoleRenderer>();
+services.AddTransient<IAppUseCase, AppUseCase>();
 services.AddTransient<AppRunner>();
 
 // Build the service provider and run the application
