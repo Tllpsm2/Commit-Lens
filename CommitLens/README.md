@@ -1,25 +1,15 @@
-# CommitLens (Main Project)
+# CommitLens App
 
-A C# command-line application designed to analyze and display the commit history of a Git repository.
+This folder contains the main executable project of CommitLens.
 
-## Estrutura
+For project overview, roadmap, and usage examples, see the repository README at the root.
 
-```
-CommitLens/
-├── Commands/          # CLI command implementations
-├── Config/            # Application configurations and settings
-├── Models/            # Data models (CommitEntry, DailyActivity, RepositoryInfo)
-├── Reporters/         # Report generation logic
-├── Services/          # Business logic and core services (GitLogService)
-└── Program.cs         # Application entry point
-```
-
-## How to Run
+## Run This Project Directly
 
 ```bash
-dotnet run
+dotnet run --project CommitLens.csproj
 ```
 
-## Dependencies
+## Target Framework
 
-- .NET 10.0
+- .NET 10
