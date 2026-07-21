@@ -10,5 +10,5 @@ public enum ReportOption
     ActivityHeatMapByRepository = 6,
     AuthorActivityOverview = 7,
     AuthorActivityByRepository = 8,
-    GhostAuthors = 9
+    GhostsAuthors = 9
 }
