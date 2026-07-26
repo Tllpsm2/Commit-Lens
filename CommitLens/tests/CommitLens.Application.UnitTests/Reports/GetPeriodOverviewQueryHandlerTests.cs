@@ -22,7 +22,7 @@ public class GetPeriodOverviewQueryHandlerTests
         string subject = "feat: something") =>
         new(new CommitHash("a1b2c3d"), new Author(authorName, "a@b.com"), date, subject);
 
-    private static Repository MakeRepo(string name, IEnumerable<Commit> commits) =>
+    private static Repo MakeRepo(string name, IEnumerable<Commit> commits) =>
         new(name, $"/repos/{name}", ["main"], commits.ToList());
 
     [Theory]

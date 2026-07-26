@@ -2,14 +2,14 @@ using CommitLens.Domain.Commits;
 
 namespace CommitLens.Domain.Repositories;
 
-public record Repository
+public record Repo
 {
     public string Name { get; init; }
     public string FullPath { get; init; }
     public IReadOnlyList<string> Branches { get; init; }
     public IReadOnlyList<Commit> Commits { get; init; }
 
-    public Repository(
+    public Repo(
         string name,
         string fullPath,
         IReadOnlyList<string> branches,

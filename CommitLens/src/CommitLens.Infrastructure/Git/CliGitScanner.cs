@@ -6,7 +6,7 @@ namespace CommitLens.Infrastructure.Git;
 
 public sealed class CliGitScanner : IGitScanner
 {
-    public Repository Scan(string directoryPath)
+    public Repo Scan(string directoryPath)
     {
         if (!Directory.Exists(directoryPath))
             throw new DirectoryNotFoundException($"Directory not found: {directoryPath}");
@@ -15,7 +15,7 @@ public sealed class CliGitScanner : IGitScanner
         var branches = GetBranches(directoryPath);
         var commits = GetCommits(directoryPath);
 
-        return new Repository(name, directoryPath, branches, commits);
+        return new Repo(name, directoryPath, branches, commits);
     }
 
     private static IReadOnlyList<string> GetBranches(string path)

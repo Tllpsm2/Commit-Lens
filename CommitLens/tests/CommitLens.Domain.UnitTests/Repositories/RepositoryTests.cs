@@ -3,7 +3,7 @@ using CommitLens.Domain.Repositories;
 
 namespace CommitLens.Domain.UnitTests.Repositories;
 
-public class RepositoryTests
+public class RepoTests
 {
     private static Commit MakeCommit(string authorName, DateTimeOffset date) =>
         new(new CommitHash("a1b2c3d"), new Author(authorName, "e@e.com"), date, "subject");
@@ -11,14 +11,14 @@ public class RepositoryTests
     [Fact]
     public void Constructor_WithEmptyName_ThrowsArgumentException()
     {
-        var act = () => new Repository(string.Empty, "/path", [], []);
+        var act = () => new Repo(string.Empty, "/path", [], []);
         act.Should().Throw<ArgumentException>().WithMessage("*name is required*");
     }
 
     [Fact]
     public void Constructor_WithEmptyPath_ThrowsArgumentException()
     {
-        var act = () => new Repository("MyRepo", string.Empty, [], []);
+        var act = () => new Repo("MyRepo", string.Empty, [], []);
         act.Should().Throw<ArgumentException>().WithMessage("*path is required*");
     }
 
@@ -32,7 +32,7 @@ public class RepositoryTests
             MakeCommit("Caio", date),
             MakeCommit("ana", date)
         };
-        var repo = new Repository("R", "/p", [], commits);
+        var repo = new Repo("R", "/p", [], commits);
 
         var result = repo.GetCommitsByAuthor("Ana").ToList();
 
@@ -42,7 +42,7 @@ public class RepositoryTests
     [Fact]
     public void GetCommitsByAuthor_IsCaseInsensitive()
     {
-        var repo = new Repository("R", "/p", [], [MakeCommit("Ana", DateTimeOffset.UtcNow)]);
+        var repo = new Repo("R", "/p", [], [MakeCommit("Ana", DateTimeOffset.UtcNow)]);
 
         repo.GetCommitsByAuthor("ANA").Should().HaveCount(1);
     }
@@ -59,7 +59,7 @@ public class RepositoryTests
             MakeCommit("Ana", new DateTimeOffset(2024, 12, 31, 0, 0, 0, TimeSpan.Zero)),
             MakeCommit("Ana", new DateTimeOffset(2025, 2, 1, 0, 0, 0, TimeSpan.Zero)),
         };
-        var repo = new Repository("R", "/p", [], commits);
+        var repo = new Repo("R", "/p", [], commits);
 
         repo.GetCommitsInPeriod(start, end).Should().HaveCount(1);
     }
@@ -76,7 +76,7 @@ public class RepositoryTests
             MakeCommit("Bob",   new DateTimeOffset(2025, 1, 10, 0, 0, 0, TimeSpan.Zero)),
             MakeCommit("Ana", new DateTimeOffset(2024, 12, 1, 0, 0, 0, TimeSpan.Zero)),
         };
-        var repo = new Repository("R", "/p", [], commits);
+        var repo = new Repo("R", "/p", [], commits);
 
         var result = repo.GetCommitsByAuthorInPeriod("Ana", start, end).ToList();
 
