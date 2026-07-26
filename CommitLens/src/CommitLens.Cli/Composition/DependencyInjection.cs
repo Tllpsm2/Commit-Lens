@@ -1,3 +1,4 @@
+using CommitLens.Application.Reports.GetActivityHeatMap;
 using CommitLens.Application.Reports.GetPeriodOverview;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,6 +10,7 @@ public static class DependencyInjection
     {
         services
             .AddSingleton<GetPeriodOverviewQueryHandler>()
+            .AddSingleton<GetActivityHeatMapQueryHandler>()
             .AddSingleton<ReportSession>();
         return services;
     }
