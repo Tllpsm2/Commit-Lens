@@ -1,7 +1,7 @@
 using CommitLens.Application.Abstractions;
 using Spectre.Console;
 
-namespace CommitLens.Cli;
+namespace CommitLens.Cli.Input;
 
 internal sealed class RepositoryPathCollector
 {

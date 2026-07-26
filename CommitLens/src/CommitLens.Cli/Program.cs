@@ -1,4 +1,4 @@
-using CommitLens.Cli;
+using CommitLens.Cli.Composition;
 using CommitLens.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 

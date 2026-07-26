@@ -1,16 +1,18 @@
 using CommitLens.Application.Reports.GetPeriodOverview;
 using Spectre.Console;
 
-namespace CommitLens.Cli;
+namespace CommitLens.Cli.Rendering;
 
 internal sealed class PeriodOverviewRenderer
 {
     public void Render(PeriodOverviewResponse response)
     {
+        ReportTitle.Write("Period Overview", response.PeriodLabel);
+        AnsiConsole.MarkupLine(
+            $"[grey]{response.From.ToString("dd MMM yyyy", System.Globalization.CultureInfo.InvariantCulture)} \u2192 " +
+            $"{response.To.ToString("dd MMM yyyy HH:mm", System.Globalization.CultureInfo.InvariantCulture)}[/]");
+        AnsiConsole.MarkupLine($"[bold]Total commits:[/] {response.TotalCommits}");
         AnsiConsole.WriteLine();
-        AnsiConsole.MarkupLine($"[bold cornflowerblue]{response.PeriodLabel}[/]  " +
-                               $"[grey]{response.From:dd MMM yyyy} \u2192 {response.To:dd MMM yyyy HH:mm}[/]");
-        AnsiConsole.MarkupLine($"[bold]Total commits:[/] {response.TotalCommits}\n");
 
         if (response.TotalCommits == 0)
         {

@@ -1,7 +1,7 @@
 using CommitLens.Application.Reports.GetPeriodOverview;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CommitLens.Cli;
+namespace CommitLens.Cli.Composition;
 
 public static class DependencyInjection
 {

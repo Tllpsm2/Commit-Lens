@@ -1,8 +1,10 @@
 using CommitLens.Application.Abstractions;
 using CommitLens.Application.Reports.GetPeriodOverview;
+using CommitLens.Cli.Input;
+using CommitLens.Cli.Rendering;
 using Spectre.Console;
 
-namespace CommitLens.Cli;
+namespace CommitLens.Cli.Composition;
 
 internal sealed class ReportSession
 {
