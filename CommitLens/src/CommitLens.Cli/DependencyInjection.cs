@@ -8,7 +8,8 @@ public static class DependencyInjection
     public static IServiceCollection AddCliServices(this IServiceCollection services)
     {
         services
-            .AddSingleton<GetPeriodOverviewQueryHandler>();
+            .AddSingleton<GetPeriodOverviewQueryHandler>()
+            .AddSingleton<ReportSession>();
         return services;
     }
 }
